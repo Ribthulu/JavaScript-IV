@@ -25,10 +25,10 @@ class Instructor extends Person{
     this.catchPhrase = attr.catchPhrase;
   }
   demo(subject){
-    return 'Today we are learning about {subject}';
+    return `Today we are learning about ${subject}`;
   }
-  grade(subject){
-    return '{student.name} receives a perfect score on {subject}';
+  grade(Students, subject){
+    return `${Students.name} receives a perfect score on ${subject}`;
   }
 }
 
@@ -42,13 +42,13 @@ class Student extends Person{
     this.favSubjects = attr.favSubjects;
   }
   listSubjects(){
-    return `favSubjects​​​`;
+    return `${this.favSubjects}​​​`;
   }
   PRAssignment(subject){
-    return `${student.name} has submitted a PR for {subject}`;
+    return `${this.name} has submitted a PR for ${subject}`;
   }
   sprintChallenge(subject){
-    return `${student.name} has begun spring challenge on {subject}`;
+    return `${this.name} has begun spring challenge on ${subject}`;
   }
 }
 
@@ -59,11 +59,11 @@ class ProjectManager extends Instructor{
     this.gradClassName = attr.gradClassName;
     this.favInstructor = attr.favInstructor;
   }
-  standup(channel){
-    return `{name} announces to {channel}, @channel standy times!​​​​​`;
+  standUp(channel){
+    return `${this.name} announces to ${channel}, @channel standy times!​​​​​`;
   }
-  debugsCode(name, subject){
-    return `{name} debugs {student.name}'s code on {subject}`;
+  debugsCode(student, subject){
+    return `${this.name} debugs ${student}'s code on ${subject}`;
   }
 }
 
@@ -73,9 +73,6 @@ const aaron = new Person({
   location: 'Anchorage',
   age: 25,
   gender: 'male',
-  favLanguage: 'Python',
-  specialty: 'Back-end',
-  catchPhrase: `My code can handle AI tech, what can yours do?`
 });
 
 const brittany = new Person({
@@ -83,9 +80,6 @@ const brittany = new Person({
   location: 'San Jose',
   age: 33,
   gender: 'female',
-  favLanguage: 'PHP',
-  specialty: 'Back-end',
-  catchPhrase: `Stats are where it's at!`
 });
 
 const colin = new Person({
@@ -93,9 +87,6 @@ const colin = new Person({
   location: 'Anchorage',
   age: 17,
   gender: 'male',
-  favLanguage: 'none',
-  specialty: 'none',
-  catchPhrase: `Coding is boring, let's go play some football!`
 });
 
 // 2a: Instructor classes
@@ -129,84 +120,101 @@ const fred = new Instructor({
   catchPhrase: `Don't forget the homies`
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-const Coleen = new Person({
-  name: 'Coleen',
-  location: 'Boston',
-  age: 20,
+// 3a: Student classes
+const alyssa = new Student({
+  name: 'Alyssa',
+  location: 'Jacksonville',
+  age: 49,
   gender: 'female',
-  favLanguage: 'Ruby',
-  specialty: 'design',
-  catchPhrase: `Get on the rails!`
+  className: "CS132",
+  previousBackground: "Banking",
+  favSubjects: ["Horseback Riding", " Baking", " Concerts"]
 });
 
-// 2a: Instructor classes
-const Alphred = new Person({
-  name: 'Alphred',
-  location: 'Gotham',
-  age: 54,
+const brad = new Student({
+  name: 'Brad',
+  location: 'Chicago',
+  age: 72,
   gender: 'male',
-  favLanguage: 'none',
-  specialty: 'Butler',
-  catchPhrase: `Anything for you Mr. Wayne`
+  className: "CS204",
+  previousBackground: "Chess Master",
+  favSubjects: ["Price is Right", " Jello", " Reading"]
 });
 
-const Bridget = new Person({
-  name: 'Bridget',
-  location: 'Buffalo',
-  age: 14,
-  gender: 'female',
-  favLanguage: 'HTML',
-  specialty: 'being a passionate programmer as a kid',
-  catchPhrase: `One day, I'll create my own computer language!`
-});
-
-const Coleen = new Person({
+const coleen = new Student({
   name: 'Coleen',
   location: 'Boston',
   age: 20,
   gender: 'female',
-  favLanguage: 'Ruby',
-  specialty: 'design',
-  catchPhrase: `Get on the rails!`
+  className: "P110",
+  previousBackground: "Biology",
+  favSubjects: ["Science", " Hiking", " Dancing"]
 });
 
+// 4a: Project Manager classes
+const angie = new ProjectManager({
+  name: 'Angie',
+  location: 'Toronto',
+  age: 27,
+  gender: 'female',
+  favLanguage: 'C++',
+  specialty: 'Logic',
+  catchPhrase: `Do I really understand this language?`,
+  gradClassName: "CS112",
+  favInstructor: "Fred"
+});
 
+const branden = new ProjectManager({
+  name: 'Branden',
+  location: 'Minneaplois',
+  age: 23,
+  gender: 'male',
+  favLanguage: 'Java',
+  specialty: 'Syntax and color scheme',
+  catchPhrase: `You want an app! I'll give you an app!`,
+  gradClassName: "CS330",
+  favInstructor: "Bridget"
+});
 
- const fred = new Instructor({
-   name: 'Fred',
-   location: 'Bedrock',
-   age: 37,
-   gender: 'male',
-   favLanguage: 'JavaScript',
-   specialty: 'Front-end',
-   catchPhrase: `Don't forget the homies`
- });
+const christian = new ProjectManager({
+  name: 'Christian',
+  location: 'Dallas',
+  age: 35,
+  gender: 'male',
+  favLanguage: 'guns',
+  specialty: 'shooting',
+  catchPhrase: `what's more powerful than a gun?`,
+  gradClassName: "CS720",
+  favInstructor: "Alphred"
+});
 
+//person challenges
+console.log(aaron.name);
+console.log(brittany.location);
+console.log(colin.age);
+console.log(aaron.gender);
+console.log(brittany.speak());
+console.log("");
 
+// instructor challenges
+console.log(alphred.specialty);
+console.log(bridget.favLanguage);
+console.log(fred.catchPhrase);
+console.log(alphred.demo("Math"));
+console.log(bridget.grade(brad, "Computer Science"));
+console.log("");
 
+//sudent challenges
+console.log(alyssa.previousBackground);
+console.log(brad.className);
+console.log(coleen.favSubjects);
+console.log(alyssa.listSubjects());
+console.log(brad.PRAssignment("Programming"));
+console.log(coleen.sprintChallenge("fecal examinations"));
+console.log("");
 
-
-
- // console.log(mage.createdAt); // Today's date
- // console.log(archer.dimensions); // { length: 1, width: 2, height: 4 }
- // console.log(swordsman.healthPoints); // 15
- // console.log(mage.name); // Bruce
- // console.log(swordsman.team); // The Round Table
- // console.log(mage.weapons); // Staff of Shamalama
- // console.log(archer.language); // Elvish
- // console.log(archer.greet()); // Lilith offers a greeting in Elvish.
- // console.log(mage.takeDamage()); // Bruce took damage.
- // console.log(swordsman.destroy()); // Sir Mustachio was removed from the game.
+// Project manager challenges
+console.log(angie.gradClassName);
+console.log(branden.favInstructor);
+console.log(christian.standUp("Hello World"));
+console.log(angie.debugsCode("Alyssa", "Elf Hunting"));
